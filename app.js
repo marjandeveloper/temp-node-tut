@@ -1,9 +1,12 @@
-// manuel aproach (create package.json in the root, create properties etc)
-// npm init (spet by step, press enter to skip)
-// npm init -y (everything default)
+const EventEmitter = require('events')
 
-const _ = require('lodash')
+const customEmitter = new EventEmitter()
 
-const items = [1, [2, [3, [4]]]]
-const newItems = _.flattenDeep(items)
-console.log(newItems);
+customEmitter.on('response', (name, id) => {
+    console.log(`My name is ${name}, and I am ${id} years old.`)
+})
+customEmitter.on('response', () => {
+    console.log(`some other logic here `)
+})
+
+customEmitter.emit('response', 'Marjan', 39)
